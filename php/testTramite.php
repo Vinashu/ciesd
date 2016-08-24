@@ -1,0 +1,31 @@
+<?php
+header("Content-type: text/html; charset=utf-8");
+include_once("classTramite.php");
+$tramite = new Tramite();
+$tramite->origem = "CPC";
+$tramite->destino = "Fundação Araucária";
+$tramite->documento = 1;
+$tramite->dataTramite = date("Y-m-d");
+$tramite->salvar();
+echo "<pre>";
+print_r($tramite);
+echo "</pre>";
+$tramite->localizar($tramite->id);
+echo "<pre>";
+print_r($tramite);
+echo "</pre>";
+$tramite->destino = "SETI";
+$tramite->atualizar();
+echo "<pre>";
+print_r($tramite);
+echo "</pre>";
+$tramite->deletar();
+$tramite->localizar($tramite->id);
+echo "<pre>";
+print_r($tramite);
+echo "</pre>";
+$tramites = $tramite->listar();
+echo "<pre>";
+print_r($tramites);
+echo "</pre>";
+?>
