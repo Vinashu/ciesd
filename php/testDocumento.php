@@ -3,7 +3,7 @@ header("Content-type: text/html; charset=utf-8");
 include_once("classDocumento.php");
 $documento = new Documento();
 $documento->titulo = "Ofício nº 035/2016 - ASP/CPC";
-$documento->tipoDocumento = 1;
+$documento->tipoDocumento = 3;
 $documento->dataCadastro = date("Y-m-d");
 $documento->salvar();
 echo "<pre>";
@@ -22,5 +22,9 @@ $documento->deletar();
 $documento->localizar($documento->id);
 echo "<pre>";
 print_r($documento);
+echo "</pre>";
+$documentos = $documento->listar();
+echo "<pre>";
+print_r($documentos);
 echo "</pre>";
 ?>
