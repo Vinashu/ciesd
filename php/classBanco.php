@@ -3,7 +3,7 @@ class Banco {
     protected static $server = "localhost";
     protected static $user = "root";
     protected static $pwd = "";
-    protected static $schema = "got";
+    protected static $schema = "ciesd";
     
     public function conectar(){           
         $db = mysqli_connect(self::$server, self::$user, self::$pwd, self::$schema);         
@@ -45,7 +45,7 @@ class Banco {
         $db = $this->conectar();
         $res = mysqli_query($db,$sql);
         if (!$res) {
-            die('Query inválida: ' . mysqli_error());
+            die('Query inválida: ' . $sql . mysqli_error());
         }           
         $id = mysqli_insert_id($db);
         $this->desconectar($db);       
@@ -56,7 +56,11 @@ class Banco {
         $campos = get_object_vars($this);  
         $sql = "UPDATE " . get_class($this) . " SET ";
         foreach($campos as $key => $value){
-            $sql .= $key . " = '$value',";
+            if(!is_object($campos[$key])){
+                $sql .= $key . " = '$value',";
+            } else {
+                $sql .= $key . " = '" . $campos[$key]->getId() ."',";                
+            }
         }                   
         $sql =  substr($sql,0,strlen($sql)-1);
         $sql .= "WHERE id = " . $this->getId();
