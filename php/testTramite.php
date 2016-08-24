@@ -28,4 +28,8 @@ $tramites = $tramite->listar();
 echo "<pre>";
 print_r($tramites);
 echo "</pre>";
+$tramites = $tramite->listarPor("documento",1);
+echo "<pre>";
+print_r($tramites);
+echo "</pre>";
 ?>

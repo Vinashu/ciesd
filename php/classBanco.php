@@ -28,7 +28,7 @@ class Banco {
         $this->desconectar($db);       
         return $data;
     }
-    
+  
     public function salvar(){
         $campos = get_object_vars($this);  
         $sqlStart = "INSERT INTO " . get_class($this) . " (";
@@ -84,6 +84,19 @@ class Banco {
           mysqli_free_result($res);                
           return($linhas);
     }    
+
+    public function listarPor($campo, $valor){
+        $sql = "select * from " . get_class($this) . " where $campo = " . $valor;
+        $db = $this->conectar();
+        $res = mysqli_query($db,$sql);
+        $this->desconectar($db);
+        while($linha = mysqli_fetch_object($res,get_class($this)))        
+        {
+            $linhas[] = $linha;
+        }
+        mysqli_free_result($res);                
+        return($linhas);
+    }      
     
     public function deletar(){
           $sql = "Delete from " . get_class($this) . " where id= " . $this->getId();
