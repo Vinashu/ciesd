@@ -1,9 +1,9 @@
 <?php
     header('Content-Type: application/json');
-    include_once("classSoldier.php");
+    include_once("classTramite.php");
     $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);   
-    $soldier = new Soldier();
-    $soldier->localizar($request->id);
-    $soldier->deletar();          
+    $tramite = new Tramite();
+    $tramite->localizar($request->id);
+    $tramite->deletar();          
 ?>
