@@ -5,6 +5,7 @@ class Tramite extends Banco {
     public $origem;
     public $destino;
     public $documento;    
+    public $dataTramite;    
 
     public function localizar($id){
         $data = parent::localizar($id); 

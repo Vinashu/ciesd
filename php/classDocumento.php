@@ -1,6 +1,7 @@
 <?php
 include_once("classBanco.php");
 include_once("classTipoDocumento.php");
+include_once("classTramite.php");
 class Documento extends Banco {
     public $id;
     public $titulo;
@@ -41,6 +42,12 @@ class Documento extends Banco {
     public function atualizar(){
         parent::atualizar();
     }    
+
+    public function deletar(){
+        parent::deletar();
+        $tramite = new Tramite();
+        $tramite->deletarPor("documento", $this->id);
+    }        
     
     public function getId(){
         return $this->id;

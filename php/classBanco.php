@@ -104,6 +104,12 @@ class Banco {
           $res = mysqli_query($db,$sql);
           $this->desconectar($db);
     }
-    
+
+    public function deletarPor($campo, $valor){
+          $sql = "Delete from " . get_class($this) . " where $campo = " . $valor;
+          $db = $this->conectar();
+          $res = mysqli_query($db,$sql);
+          $this->desconectar($db);
+    }        
 }
 ?>
