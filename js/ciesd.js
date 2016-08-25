@@ -1,5 +1,5 @@
-var GoT = angular.module("GoT", ["ngAnimate"]);
-GoT.controller("GoTCtrl", function ($scope, $http) {
+var ciesdj = angular.module("ciesdj", ["ngAnimate"]);
+ciesdj.controller("ciesdjCtrl", function ($scope, $http) {
     $scope.criterioDeOrdenacao = "name";
     $scope.direcaoDaOrdenacao = false;  
     $scope.localHouses = false;
