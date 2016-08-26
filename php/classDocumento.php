@@ -59,6 +59,18 @@ class Documento extends Banco {
             $tipoDocumento->localizar($this->tipoDocumento);     
             $this->tipoDocumento = $tipoDocumento;            
         }
-    }      
+    }
+
+    public function formatarDataPara(){
+        $this->dataCadastro = date("Y-m-d", strtotime(str_replace('/','-', $this->dataCadastro))); 
+    } 
+
+    public function formatarDataDe(){
+        $this->dataCadastro = date("d/m/Y", strtotime(str_replace('-','/', $this->dataCadastro))); 
+    } 
+    /*
+    $date = date("Y-m-d H:i:s",strtotime(str_replace('/','-',$date)))
+    strtotime interprets x/y/z as mm/dd/yy[yy], and x-y-z as dd-mm-yyyy or yy-mm-dd, depending on whether z is 4 digits or 2.
+    */                                                    
 }
 ?>
