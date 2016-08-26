@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: 127.0.0.1
--- Data de Criação: 03-Mar-2016 às 21:06
+-- Data de Criação: 26-Ago-2016 às 22:17
 -- Versão do servidor: 5.6.11
 -- versão do PHP: 5.5.3
 
@@ -17,67 +17,97 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de Dados: `got`
+-- Base de Dados: `ciesd`
 --
-CREATE DATABASE IF NOT EXISTS `got` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `got`;
+CREATE DATABASE IF NOT EXISTS `ciesd` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `ciesd`;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `house`
+-- Estrutura da tabela `documento`
 --
 
-CREATE TABLE IF NOT EXISTS `house` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL,
-  `icon` varchar(64) DEFAULT NULL,
-  `banner` varchar(64) DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `documento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador do Documento',
+  `titulo` varchar(256) NOT NULL COMMENT 'Título do Documento',
+  `tipoDocumento` int(11) NOT NULL COMMENT 'Chave estrangeira do Tipo do Documento',
+  `dataCadastro` date NOT NULL COMMENT 'Data de cadastro do Documento',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
--- Extraindo dados da tabela `house`
+-- Extraindo dados da tabela `documento`
 --
 
-INSERT INTO `house` (`id`, `name`, `icon`, `banner`) VALUES
-(1, 'Arryn', 'imagens/icon07.png', 'imagens/house07.jpg'),
-(2, 'Baratheon', 'imagens/icon01.png', 'imagens/house01.jpg'),
-(3, 'Frey', 'imagens/icon11.png', 'imagens/house08.jpg'),
-(4, 'Greyjoy', 'imagens/icon05.png', 'imagens/house05.jpg'),
-(5, 'Lannister', 'imagens/icon03.png', 'imagens/house03.jpg'),
-(6, 'Martell', 'imagens/icon06.png', 'imagens/house06.jpg'),
-(7, 'Tyrell', 'imagens/icon04.png', 'imagens/house04.jpg'),
-(8, 'Stark', 'imagens/icon10.png', 'imagens/house10.jpg'),
-(9, 'Tully', 'imagens/icon08.png', 'imagens/house08.jpg');
+INSERT INTO `documento` (`id`, `titulo`, `tipoDocumento`, `dataCadastro`) VALUES
+(1, 'OfÃ­cio nÂº 035/2016 - ASP/CPC', 1, '2016-08-24'),
+(2, 'OfÃ­cio nÂº 035/2016 - ASP/CPC', 1, '2016-08-24'),
+(3, 'OfÃ­cio nÂº 035/2016 - ASP/CPC', 1, '2016-08-24'),
+(4, 'OfÃ­cio nÂº 035/2016 - ASP/CPC', 1, '2016-08-24'),
+(5, 'OfÃ­cio nÂº 035/2016 - ASP/CPC', 1, '2016-08-24'),
+(6, 'OfÃ­cio nÂº 035/2016 - ASP/CPC', 1, '2016-08-24'),
+(7, 'OfÃ­cio nÂº 035/2016 - ASP/CPC', 1, '2016-08-24'),
+(8, 'Outro tÃ­tulo de documento', 3, '2016-08-25'),
+(9, 'Outro tÃ­tulo de documento', 3, '2016-08-25');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `soldier`
+-- Estrutura da tabela `tipodocumento`
 --
 
-CREATE TABLE IF NOT EXISTS `soldier` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL,
-  `house` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tipodocumento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador do Tipo de Documento',
+  `nome` varchar(32) NOT NULL COMMENT 'Nome do Tipo do Documento',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
--- Extraindo dados da tabela `soldier`
+-- Extraindo dados da tabela `tipodocumento`
 --
 
-INSERT INTO `soldier` (`id`, `name`, `house`) VALUES
-(1, 'McBotton', 1),
-(2, 'John', 2),
-(3, 'Monster', 3),
-(4, 'Bob', 4),
-(5, 'Tyrion', 5),
-(6, 'Oberyn', 6),
-(7, 'Den', 7),
-(8, 'Eddar', 8),
-(9, 'Catelyn', 9);
+INSERT INTO `tipodocumento` (`id`, `nome`) VALUES
+(1, 'Processo'),
+(2, 'Protocolo'),
+(3, 'OfÃ­cio'),
+(4, 'Outros'),
+(5, 'Outro Tipo'),
+(6, 'Alterado Tipo'),
+(10, 'Alterado Tipo'),
+(19, 'Alterado Tipo'),
+(20, 'OutrÃ³ TÃ­po'),
+(21, 'OutrÃ³ TÃ­po');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tramite`
+--
+
+CREATE TABLE IF NOT EXISTS `tramite` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador do Tramite',
+  `origem` varchar(256) NOT NULL COMMENT 'Órgão de origem',
+  `destino` varchar(256) NOT NULL COMMENT 'Órgão de destino',
+  `documento` int(11) NOT NULL,
+  `dataTramite` date NOT NULL COMMENT 'Data da Tramitação',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Extraindo dados da tabela `tramite`
+--
+
+INSERT INTO `tramite` (`id`, `origem`, `destino`, `documento`, `dataTramite`) VALUES
+(4, 'CPC', 'SETI', 1, '2016-08-24'),
+(5, 'CPC', 'FundaÃ§Ã£o AraucÃ¡ria', 1, '2016-08-24'),
+(6, 'CPC', 'FundaÃ§Ã£o AraucÃ¡ria', 2, '2016-08-24'),
+(8, 'CPC', 'SETI', 8, '2016-08-25'),
+(9, 'SETI', 'CPC', 8, '2016-08-25'),
+(10, 'CPC', 'GRE', 8, '2016-08-25'),
+(11, 'CPC', 'SETI', 9, '2016-08-25'),
+(12, 'SETI', 'CPC', 9, '2016-08-25'),
+(13, 'CPC', 'GRE', 9, '2016-08-25');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
