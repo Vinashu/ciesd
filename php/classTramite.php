@@ -33,5 +33,13 @@ class Tramite extends Banco {
     public function getId(){
         return $this->id;
     }      
+
+    public function formatarDataPara(){
+        $this->dataTramite = date("Y-m-d", strtotime(str_replace('/','-', $this->dataTramite))); 
+    } 
+
+    public function formatarDataDe(){
+        $this->dataTramite = date("d/m/Y", strtotime(str_replace('-','/', $this->dataTramite))); 
+    }     
 }
 ?>
