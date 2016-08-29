@@ -22,10 +22,10 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Data</th>
-                                <th>Título/Assunto</th>
-                                <th>Tipo de Doumento</th>
+                                <th><a href="" ng-click="ordenarPor('id')">ID</a></th>
+                                <th><a href="" ng-click="ordenarPor('dataCadastro')">Data</a></th>
+                                <th><a href="" ng-click="ordenarPor('titulo')">Título/Assunto</a></th>
+                                <th><a href="" ng-click="ordenarPor('tipoDocumento.nome')">Tipo de Doumento</a></th>
                                 <!--
                                 <th><a href="" ng-click="ordenarPor('house.name')">House</a></th>
                                 <th><a href="" ng-click="ordenarPor('name')">Soldier</a></th>
@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
                             <!-- <tr ng-repeat="documento in documentos | filter:searchText | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao | limitTo:15"> -->                            
-                            <tr ng-repeat="documento in documentos">
+                            <tr ng-repeat="documento in documentos | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
                                 <td align=middle>
                                     {{documento.id}}
                                 </td>

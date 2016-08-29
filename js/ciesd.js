@@ -1,7 +1,11 @@
 var ciesd = angular.module("ciesd", ["ngAnimate"]);
 ciesd.controller("ciesdCtrl", function ($scope, $http) {
-    $scope.criterioDeOrdenacao = "name";
-    $scope.direcaoDaOrdenacao = false;
+    $scope.criterioDeOrdenacao = "id";
+    $scope.direcaoDaOrdenacao = true;
+    $scope.ordenarPor = function (campo) {
+        $scope.criterioDeOrdenacao = campo;
+        $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;              
+    };      
     /*  
     $scope.localHouses = false;
     $scope.localArmy = false;       
@@ -168,9 +172,5 @@ ciesd.controller("ciesdCtrl", function ($scope, $http) {
 			return soldado.selecionado;
 		});
 	};		
-    $scope.ordenarPor = function (campo) {
-        $scope.criterioDeOrdenacao = campo;
-        $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;              
-    };                 
-    */
+    */               
 });
