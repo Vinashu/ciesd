@@ -1,11 +1,36 @@
-var ciesdj = angular.module("ciesdj", ["ngAnimate"]);
-ciesdj.controller("ciesdjCtrl", function ($scope, $http) {
+var ciesd = angular.module("ciesd", ["ngAnimate"]);
+ciesd.controller("ciesdCtrl", function ($scope, $http) {
     $scope.criterioDeOrdenacao = "name";
-    $scope.direcaoDaOrdenacao = false;  
+    $scope.direcaoDaOrdenacao = false;
+    /*  
     $scope.localHouses = false;
     $scope.localArmy = false;       
     $scope.army = [];
-    $scope.houses = [];            
+    $scope.houses = [];
+    */
+    $scope.documentos = [];       
+    var getDocumentos = function () {
+        $http.get("php/getDocumentos.php")
+            .success(function(data, status, headers, config) {
+                $scope.documentos = data;
+                console.log(data, status);                        
+            })
+            .error(function(data, status, headers, config) {
+                switch(status) {
+                    case 401: {
+                        $scope.message = "You must be authenticated!"
+                    break;
+                    }
+                    case 500: {
+                        $scope.message = "Something went wrong!";
+                    break;
+                    }
+                }
+            console.log(data, status);
+            });
+        };     
+    getDocumentos();
+    /*    
     var retrieveHouses = function () {
         $http.get("php/getHouses.php")
             .success(function(data, status, headers, config) {
@@ -147,4 +172,5 @@ ciesdj.controller("ciesdjCtrl", function ($scope, $http) {
         $scope.criterioDeOrdenacao = campo;
         $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao;              
     };                 
+    */
 });

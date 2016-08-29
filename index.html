@@ -1,11 +1,12 @@
 <!doctype html>
-<html ng-app="GoT">
+<html ng-app="ciesd">
 
 <head>
     <meta charset="UTF-8" />
     <title>Controle Interno de Entrada e Saída de Documentos - CPC</title>
     <script src="lib/angular.js"></script>
     <script src="lib/angular-animate.js"></script>
+	<script src="lib/angular-locale_pt-br.js"></script>    
     <script src="js/ciesd.js"></script>
     <link rel="stylesheet" type="text/css" href="lib/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/ciesd.css">
@@ -16,31 +17,45 @@
         <div class='row-fluid'>
             <div class="hidden-xs col-sm-2 col-md-3 col-lg-3"></div>
             <div class="jumbotron col-xs-10 col-sm-8 col-md-5 col-lg-4">
-                <div ng-if="army">
+                <div ng-if="documentos">
                     <h3>Controle Interno de Entrada e Saída de Documentos - CPC</h3>
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>ID</th>
+                                <th>Data</th>
+                                <th>Título/Assunto</th>
+                                <th>Tipo de Doumento</th>
+                                <!--
                                 <th><a href="" ng-click="ordenarPor('house.name')">House</a></th>
                                 <th><a href="" ng-click="ordenarPor('name')">Soldier</a></th>
+                                -->
                                 <th></th>                                
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="soldier in army | filter:searchText | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao | limitTo:15">
+                            <!-- <tr ng-repeat="documento in documentos | filter:searchText | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao | limitTo:15"> -->                            
+                            <tr ng-repeat="documento in documentos">
                                 <td align=middle>
-                                    <span class='sigil' ng-class="soldier.house.name | lowercase"></span>
+                                    {{documento.id}}
+                                </td>
+                                <td align=middle>
+                                    {{documento.dataCadastro | date:'dd/MM/yyyy'}}                               
+                                </td>                                
+                                <td>
+                                    {{documento.titulo}}
                                 </td>
                                 <td>
-                                    {{soldier.name}}
-                                </td>
+                                    {{documento.tipoDocumento.nome}}
+                                </td>                                
                                 <td>
-                                    <input type="checkbox" ng-model="soldier.selecionado" />
+                                    <input type="checkbox" ng-model="documento.selecionado" />
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <!--
                 <div>
                     <form name="soldierForm" id="soldierForm">
                         <label for='soldier'>Name:</label>
@@ -65,12 +80,8 @@
                         </label>
                     </form>
                     <br />
-                </div>           
-            </div>
-            <div class="banner col-xs-2 col-sm-2 col-md-1 col-lg-1">
-                <span>          
-                    <img src="{{man.house.banner}}" />           
-                </span>
+                </div>
+                -->           
             </div>
             <div class="hidden-xs hidden-sm col-md-3 col-lg-4"></div>
         </div>
