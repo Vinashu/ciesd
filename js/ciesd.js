@@ -12,7 +12,8 @@ ciesd.controller("ciesdCtrl", function ($scope, $http) {
     $scope.army = [];
     $scope.houses = [];
     */
-    $scope.documentos = [];       
+    $scope.documentos = [];
+    $scope.tiposDocumento = [];           
     var getDocumentos = function () {
         $http.get("php/getDocumentos.php")
             .success(function(data, status, headers, config) {
@@ -34,6 +35,27 @@ ciesd.controller("ciesdCtrl", function ($scope, $http) {
             });
         };     
     getDocumentos();
+    var getTiposDocumento = function () {
+        $http.get("php/getTiposDocumento.php")
+            .success(function(data, status, headers, config) {
+                $scope.tiposDocumento = data;
+                console.log(data, status);                        
+            })
+            .error(function(data, status, headers, config) {
+                switch(status) {
+                    case 401: {
+                        $scope.message = "You must be authenticated!"
+                    break;
+                    }
+                    case 500: {
+                        $scope.message = "Something went wrong!";
+                    break;
+                    }
+                }
+            console.log(data, status);
+            });
+        };     
+    getTiposDocumento();    
     /*    
     var retrieveHouses = function () {
         $http.get("php/getHouses.php")

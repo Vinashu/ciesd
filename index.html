@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
                             <!-- <tr ng-repeat="documento in documentos | filter:searchText | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao | limitTo:15"> -->                            
-                            <tr ng-repeat="documento in documentos | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
+                            <tr ng-repeat="documento in documentos | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao | filter:searchText ">
                                 <td align=middle>
                                     {{documento.id}}
                                 </td>
@@ -55,7 +55,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!--
                 <div>
                     <form name="soldierForm" id="soldierForm">
                         <label for='soldier'>Name:</label>
@@ -67,21 +66,23 @@
                             Campo nome deve ter no mínimo 5 caracteres.
                         </div>                            
                         <span ng-if="man.house.name" class="sigil" ng-class="man.house.name | lowercase"></span>
-                        <label for="house">House:</label>
-                        <select name="house" id="house" ng-model="man.house" class="form-control" ng-options="house.name for house in houses track by house.icon"
+                        <label for="tipoDocumento">Tipo de Documento:</label>
+
+                        <select name="tipoDocumento" id="tipoDocumento" ng-model="documento.tipoDocumento" class="form-control" ng-options="tipoDocumento.nome for tipoDocumento in tiposDocumento track by tipoDoumento.id"
                         ng-model="data.selectedOption" ng-required="true" >
                         </select>
+
                         <button class="btn btn-primary btn-block" ng-click="alistar(man)" ng-disabled="soldierForm.$invalid">Enlist</button>
                         <br>
 		                <button class="btn btn-danger btn-block" ng-click="liberarSoldados(army)" ng-hide="!isSoldadoSelecionado(army)">Liberar Soldados</button>                        
                         <br>
-                        <label>Search by House:
-                            <input ng-model="searchText" placeholder="Type the name of a House...">
+                        <label>Procurar documento:
+                            <input ng-model="searchText" placeholder="Digite aqui o argumento de busca...">
                         </label>
                     </form>
                     <br />
                 </div>
-                -->           
+          
             </div>
             <div class="hidden-xs hidden-sm col-md-3 col-lg-4"></div>
         </div>
