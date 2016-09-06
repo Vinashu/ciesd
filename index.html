@@ -26,10 +26,6 @@
                                 <th><a href="" ng-click="ordenarPor('dataCadastro')">Data</a></th>
                                 <th><a href="" ng-click="ordenarPor('titulo')">Título/Assunto</a></th>
                                 <th><a href="" ng-click="ordenarPor('tipoDocumento.nome')">Tipo de Doumento</a></th>
-                                <!--
-                                <th><a href="" ng-click="ordenarPor('house.name')">House</a></th>
-                                <th><a href="" ng-click="ordenarPor('name')">Soldier</a></th>
-                                -->
                                 <th></th>                                
                             </tr>
                         </thead>
@@ -56,28 +52,34 @@
                     </table>
                 </div>
                 <div>
-                    <form name="soldierForm" id="soldierForm">
+                    <form name="documentoForm" id="documentoForm">
                         <label for='soldier'>Name:</label>
-                        <input type="text" ng-model="man.name" class="form-control" ng-required="true" ng-minlength="5" name="nome" />
-                        <div ng-show="soldierForm.nome.$error.required && soldierForm.nome.$dirty" class="alert alert-danger">
+                        <input type="text" ng-model="documento.name" class="form-control" ng-required="true" ng-minlength="5" name="nome" />
+                        <div ng-show="documentoForm.nome.$error.required && documentoForm.nome.$dirty" class="alert alert-danger">
                             Por favor, preenchar o nome!
                         </div>
-                        <div ng-show="soldierForm.nome.$error.minlength" class="alert alert-danger">
+                        <div ng-show="documentoForm.nome.$error.minlength" class="alert alert-danger">
                             Campo nome deve ter no mínimo 5 caracteres.
-                        </div>                            
-                        <span ng-if="man.house.name" class="sigil" ng-class="man.house.name | lowercase"></span>
+                        </div>  
+                        <!--                          
+                        <span ng-if="documento.tipoDocumento.nome" class="sigil" ng-class="documento.tipoDocumento.nome | lowercase"></span>
+                        -->
                         <label for="tipoDocumento">Tipo de Documento:</label>
-
-                        <select name="tipoDocumento" id="tipoDocumento" ng-model="documento.tipoDocumento" class="form-control" ng-options="tipoDocumento.nome for tipoDocumento in tiposDocumento track by tipoDoumento.id"
-                        ng-model="data.selectedOption" ng-required="true" >
+                        <select name="tipoDocumento" id="tipoDocumento" ng-model="documento.tipoDocumento" class="form-control" 
+                                ng-options="tipoDocumento.nome for tipoDocumento in tiposDocumento track by tipoDoumento.id"
+                                ng-model="data.selectedOption" ng-required="true" >
                         </select>
-
-                        <button class="btn btn-primary btn-block" ng-click="alistar(man)" ng-disabled="soldierForm.$invalid">Enlist</button>
-                        <br>
+                        <br />                        
+                        <button class="btn btn-primary btn-block" ng-click="cadastrar(documento)" ng-disabled="documentoForm.$invalid">
+                                <span class="glyphicon glyphicon-file"></span> Cadastrar documento
+                        </button>
+                        <!--
 		                <button class="btn btn-danger btn-block" ng-click="liberarSoldados(army)" ng-hide="!isSoldadoSelecionado(army)">Liberar Soldados</button>                        
                         <br>
-                        <label>Procurar documento:
-                            <input ng-model="searchText" placeholder="Digite aqui o argumento de busca...">
+                        -->
+                        <br>
+                        <label>Procurar documento <span class="glyphicon glyphicon-search"></span>: 
+                            <input ng-model="searchText" placeholder="Digite aqui o argumento de busca..." size="38" >
                         </label>
                     </form>
                     <br />
