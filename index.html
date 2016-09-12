@@ -53,12 +53,13 @@
                 </div>
                 <div>
                     <form name="documentoForm" id="documentoForm">
-                        <label for='soldier'>Name:</label>
-                        <input type="text" ng-model="documento.name" class="form-control" ng-required="true" ng-minlength="5" name="nome" />
-                        <div ng-show="documentoForm.nome.$error.required && documentoForm.nome.$dirty" class="alert alert-danger">
-                            Por favor, preenchar o nome!
+                        <label for='titulo'>Título/Assunto:</label>
+                        <input type="text" ng-model="documento.titulo" class="form-control" ng-required="true" ng-minlength="5" name="titulo" 
+                        placeholder="Por favor, digite o título do Documento!"/>
+                        <div ng-show="documentoForm.titulo.$error.required && documentoForm.titulo.$dirty" class="alert alert-danger">
+                            Por favor, digite o título do Documento!
                         </div>
-                        <div ng-show="documentoForm.nome.$error.minlength" class="alert alert-danger">
+                        <div ng-show="documentoForm.titulo.$error.minlength" class="alert alert-danger">
                             Campo nome deve ter no mínimo 5 caracteres.
                         </div>  
                         <!--                          
@@ -69,7 +70,15 @@
                                 ng-options="tipoDocumento.nome for tipoDocumento in tiposDocumento track by tipoDoumento.id"
                                 ng-model="data.selectedOption" ng-required="true" >
                         </select>
-                        <br />                        
+                        <label for='dataCadastro'>Data:</label>
+                        <input type="text" ng-model="documento.dataCadastro" class="form-control" ng-required="true" ng-minlength="10" name="dataCadastro" 
+                        placeholder="Digite a data..."/>
+                        <div ng-show="documentoForm.dataCadastro.$error.required && documentoForm.dataCadastro.$dirty" class="alert alert-danger">
+                            Digite a data...
+                        </div>
+                        <div ng-show="documentoForm.dataCadastro.$error.minlength" class="alert alert-danger">
+                            A data deve estar no formato dd/mm/aaaa.
+                        </div>                                                
                         <button class="btn btn-primary btn-block" ng-click="cadastrar(documento)" ng-disabled="documentoForm.$invalid">
                                 <span class="glyphicon glyphicon-file"></span> Cadastrar documento
                         </button>

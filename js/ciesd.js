@@ -55,7 +55,33 @@ ciesd.controller("ciesdCtrl", function ($scope, $http) {
             console.log(data, status);
             });
         };     
-    getTiposDocumento();    
+    getTiposDocumento();   
+    $scope.cadastrar = function (documento) {
+        console.log(documento);
+        $scope.documentos.push(angular.copy(documento));                    
+        addDocumento(documento);                    
+        delete $scope.documento;
+        $scope.documentoForm.$setPristine();       
+    };     
+    var addDocumento = function (data) {
+        $http.post("php/postDocumento.php", data)
+            .success(function(data, status, headers, config) {
+                console.log("Post success");
+                getDocumentos();                                                            
+            })
+            .error(function(data, status, headers, config) {
+                switch(status) {
+                    case 401: {
+                        $scope.message = "You must be authenticated!"
+                    break;
+                    }
+                    case 500: {
+                        $scope.message = "Something went wrong!";
+                    break;
+                    }
+                }
+            });
+        };    
     /*    
     var retrieveHouses = function () {
         $http.get("php/getHouses.php")
