@@ -1,5 +1,14 @@
 var ciesd = angular.module("ciesd", ["ngAnimate"]);
 ciesd.controller("ciesdCtrl", function ($scope, $http) {
+    $scope.procurador = {
+        status:  false,
+        inativo: "Ativar procura...",
+        ativo:   "Desativar procura..."
+    }
+    $scope.ativarProcura = function () {
+        $scope.procurador.status = !$scope.procurador.status;    
+        delete $scope.searchText;          
+    };     
     $scope.criterioDeOrdenacao = "id";
     $scope.direcaoDaOrdenacao = true;
     $scope.ordenarPor = function (campo) {
