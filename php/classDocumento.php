@@ -9,6 +9,7 @@ class Documento extends Banco {
     public $dataCadastro;
 
     public function __construct(){
+        $this->id = str_pad($this->id, 5, '0', STR_PAD_LEFT);        
         if($this->tipoDocumento !=0){
             $this->setTipoDocumento();            
         }
