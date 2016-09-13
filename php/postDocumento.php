@@ -7,7 +7,8 @@
     $documento->titulo = $request->titulo;
     $documento->tipoDocumento = $request->tipoDocumento->id;
     $documento->dataCadastro = $request->dataCadastro;
-    $documento->formatarDataPara();
-    $documento->setTipoDocumento();
+    //adicionado no método salvar
+    //$documento->formatarDataPara();
+    //$documento->setTipoDocumento();
     $documento->salvar();      
 ?>

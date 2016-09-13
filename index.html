@@ -67,7 +67,7 @@
                         -->
                         <label for="tipoDocumento">Tipo de Documento:</label>
                         <select name="tipoDocumento" id="tipoDocumento" ng-model="documento.tipoDocumento" class="form-control" 
-                                ng-options="tipoDocumento.nome for tipoDocumento in tiposDocumento track by tipoDoumento.id"
+                                ng-options="tipoDocumento.nome for tipoDocumento in tiposDocumento track by tipoDocumento.id"
                                 ng-model="data.selectedOption" ng-required="true" >
                         </select>
                         <label for='dataCadastro'>Data:</label>
@@ -86,6 +86,7 @@
 		                <button class="btn btn-danger btn-block" ng-click="liberarSoldados(army)" ng-hide="!isSoldadoSelecionado(army)">Liberar Soldados</button>                        
                         <br>
                         -->
+                        {{documento}}
                         <br>
                         <label>Procurar documento <span class="glyphicon glyphicon-search"></span>: 
                             <input ng-model="searchText" placeholder="Digite aqui o argumento de busca..." size="38" >

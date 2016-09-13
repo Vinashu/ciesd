@@ -26,7 +26,10 @@ class Documento extends Banco {
             $campos = get_object_vars($data);                        
             foreach($campos as $key => $value){
                 $this->$key = $data->$key;
-            }           
+            }
+            if($this->id != 0){
+                $this->id = str_pad($this->id, 5, '0', STR_PAD_LEFT);            
+            }                        
             if($this->tipoDocumento !=0){
                 $this->setTipoDocumento();            
             }        
@@ -40,10 +43,10 @@ class Documento extends Banco {
     
     public function salvar(){
         $this->formatarDataPara();
-        $this->id = parent::salvar();
         if($this->tipoDocumento !=0){
             $this->setTipoDocumento();            
-        }           
+        }     
+        $this->id = parent::salvar();      
     }
 
     public function atualizar(){
