@@ -9,10 +9,15 @@ class Documento extends Banco {
     public $dataCadastro;
 
     public function __construct(){
-        $this->id = str_pad($this->id, 5, '0', STR_PAD_LEFT);        
-        if($this->tipoDocumento !=0){
+        if($this->id != 0){
+            $this->id = str_pad($this->id, 5, '0', STR_PAD_LEFT);            
+        }              
+        if($this->tipoDocumento != 0){
             $this->setTipoDocumento();            
         }
+        if($this->dataCadastro != 0){
+            $this->formatarDataDe();                        
+        }          
     }
 
     public function localizar($id){
@@ -34,6 +39,7 @@ class Documento extends Banco {
     }
     
     public function salvar(){
+        $this->formatarDataPara();
         $this->id = parent::salvar();
         if($this->tipoDocumento !=0){
             $this->setTipoDocumento();            
