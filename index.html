@@ -20,14 +20,6 @@
             <div class="hidden-xs hidden-sm col-md-3 col-lg-3"></div>            
             <div class="jumbotron col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <div ng-if="documentos">
-    <ui-accordions>
-    <ui-accordion title="Accordion 1">
-        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    </ui-accordion>
-    <ui-accordion title="Accordion 2">
-        bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
-    </ui-accordion>
-    </ui-accordions>    
                     <h3 class='txt-cntrl'>Controle Interno de Entrada e Saída de Documentos - CPC</h3>
                     <table class="table">
                         <thead>
@@ -40,26 +32,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- <tr ng-repeat="documento in documentos | filter:searchText | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao | limitTo:15"> -->                            
-                            <tr ng-repeat="documento in documentos | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao | filter:searchText ">
-                                <td align=middle>
-                                    {{documento.id}}
-                                </td>
-                                <td align=middle>
-                                    {{documento.dataCadastro | date:'dd/MM/yyyy'}}                               
-                                </td>                                
-                                <td>
-                                    {{documento.titulo}}
-                                </td>
-                                <td>
-                                    {{documento.tipoDocumento.nome}}
-                                </td>                                
-                                <td>
-                                    <input type="checkbox" ng-model="documento.selecionado" />
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
+                    <ui-accordions>
+                        <ui-accordion ng-repeat="documento in documentos | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao | filter:searchText | limitTo:20" 
+                            id="{{documento.id}}"
+                            titulo="{{documento.titulo}}"                         
+                            data="{{documento.dataCadastro | date:'dd/MM/yyyy'}}"
+                            tipo="{{documento.tipoDocumento.nome}}"
+                        >
+                        {{documento.id}}<br />
+                        {{documento.titulo}}<br />
+                        {{documento.dataCadastro}}<br />
+                        {{documento.tipoDocumento.nome}}<br />                                                                        
+                        </ui-accordion>                       
+                    </ui-accordions>   
                 </div>
                 <div>
                     <form name="documentoForm" id="documentoForm">

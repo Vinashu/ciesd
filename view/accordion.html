@@ -1,2 +1,5 @@
-<div class="ui-accordion-title" ng-click="open()">{{title}}</div>
+<div class="ui-accordion-title" ng-click="open()">
+    {{id}} - {{titulo}}<br />
+    {{data}} - {{tipo}}
+</div>
 <div class="ui-accordion-content" ng-show="isOpened" ng-transclude></div>

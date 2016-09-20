@@ -18,7 +18,10 @@ angular.module("ciesd").directive("uiAccordion", function(){
         templateUrl: "view/accordion.html",
         transclude: true,
         scope: {
-            title: "@"
+            id: "@",
+            titulo: "@",
+            data: "@",
+            tipo: "@"
         },
         require: "^uiAccordions",
         link: function(scope, element, attrs, ctrl){
