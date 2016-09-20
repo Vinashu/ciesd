@@ -8,6 +8,7 @@
     <script src="lib/angular-animate.js"></script>
 	<script src="lib/angular-locale_pt-br.js"></script>    
     <script src="js/ciesd.js"></script>
+    <script src="js/uiDateDirective.js"></script>    
     <link rel="stylesheet" type="text/css" href="lib/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/ciesd.css">
 </head>
@@ -72,7 +73,7 @@
                         </select>
                         <label for='dataCadastro'>Data:</label>
                         <input type="text" ng-model="documento.dataCadastro" class="form-control" ng-required="true" ng-minlength="10" name="dataCadastro" 
-                        placeholder="Digite a data..."/>
+                        placeholder="Digite a data..." ui-date />
                         <div ng-show="documentoForm.dataCadastro.$error.required && documentoForm.dataCadastro.$dirty" class="alert alert-danger">
                             Digite a data...
                         </div>
@@ -88,16 +89,18 @@
                         -->
                         <br>
                     </form>
-                        <button class="btn btn-primary btn-block" ng-click="ativarProcura()">
-                            <span class="glyphicon glyphicon-file"></span> {{procurador.status ? procurador.ativo : procurador.inativo}}
-                        </button>
-                        <div ng-show="procurador.status">
-                            <br />
-                            <label>Procurar documento <span class="glyphicon glyphicon-search"></span>: 
-                                <input ng-model="searchText" placeholder="Digite aqui o argumento de busca..." size="38" >
-                            </label>
-                        </div>                    
                 </div>
+                <div>
+                    <button class="btn btn-primary btn-block" ng-click="ativarProcura()">
+                        <span class="glyphicon glyphicon-file"></span> {{procurador.status ? procurador.ativo : procurador.inativo}}
+                    </button>
+                    <div ng-show="procurador.status">
+                        <br />
+                        <label>Procurar documento <span class="glyphicon glyphicon-search"></span>: 
+                            <input ng-model="searchText" placeholder="Digite aqui o argumento de busca..." size="38" >
+                        </label>
+                    </div>
+                </div>                                        
             </div>
             <div class="hidden-xs hidden-sm col-md-3 col-lg-3"></div>
         </div>
