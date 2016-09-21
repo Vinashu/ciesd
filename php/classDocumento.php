@@ -10,7 +10,7 @@ class Documento extends Banco {
 
     public function __construct(){
         if($this->id != 0){
-            $this->id = str_pad($this->id, 5, '0', STR_PAD_LEFT);            
+            $this->formatarId();       
         }              
         if($this->tipoDocumento != 0){
             $this->setTipoDocumento();            
@@ -28,7 +28,7 @@ class Documento extends Banco {
                 $this->$key = $data->$key;
             }
             if($this->id != 0){
-                $this->id = str_pad($this->id, 5, '0', STR_PAD_LEFT);            
+                $this->formatarId();
             }                        
             if($this->tipoDocumento !=0){
                 $this->setTipoDocumento();            
@@ -78,6 +78,10 @@ class Documento extends Banco {
     public function formatarDataDe(){
         $this->dataCadastro = date("d/m/Y", strtotime(str_replace('-','/', $this->dataCadastro))); 
     } 
+
+    public function formatarId() {
+        $this->id = str_pad($this->id, 5, '0', STR_PAD_LEFT);    
+    }
     /*
     $date = date("Y-m-d H:i:s",strtotime(str_replace('/','-',$date)))
     strtotime interprets x/y/z as mm/dd/yy[yy], and x-y-z as dd-mm-yyyy or yy-mm-dd, depending on whether z is 4 digits or 2.
