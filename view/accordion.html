@@ -2,4 +2,24 @@
     {{id}} - {{titulo}}<br />
     {{data}} - {{tipo}}
 </div>
-<div class="ui-accordion-content" ng-show="isOpened" ng-transclude></div>
+<div class="ui-accordion-content" ng-show="isOpened" > <!-- ng-transclude -->
+    <div ng-show="!tramites" class="alert {{messageType}}">{{message}}</div>    
+    <table class="table" ng-show="tramites">
+        <thead>
+            <tr>
+                <th class='txt-cntrl'>ID</th>
+                <th class='txt-cntrl'>Data</th>
+                <th class='txt-cntrl'>Origem</th>
+                <th class='txt-cntrl'>Destino</th>                            
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="tramite in tramites">
+                <td>{{tramite.id}}</td>
+                <td>{{tramite.dataTramite | date:"dd/MM/yyyy"}}</td> 
+                <td>{{tramite.origem}}</td>
+                <td>{{tramite.destino}}</td>             
+            </tr>
+        </tbody>
+    </table>           
+</div>

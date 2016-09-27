@@ -41,10 +41,6 @@
                             data="{{documento.dataCadastro | date:'dd/MM/yyyy'}}"
                             tipo="{{documento.tipoDocumento.nome}}"
                         >
-                        {{documento.id}}<br />
-                        {{documento.titulo}}<br />
-                        {{documento.dataCadastro}}<br />
-                        {{documento.tipoDocumento.nome}}<br />                                                                        
                         </ui-accordion>                       
                     </ui-accordions>   
                 </div>
@@ -59,9 +55,6 @@
                         <div ng-show="documentoForm.titulo.$error.minlength" class="alert alert-danger">
                             Campo nome deve ter no mínimo 5 caracteres.
                         </div>  
-                        <!--                          
-                        <span ng-if="documento.tipoDocumento.nome" class="sigil" ng-class="documento.tipoDocumento.nome | lowercase"></span>
-                        -->
                         <label for="tipoDocumento">Tipo de Documento:</label>
                         <select name="tipoDocumento" id="tipoDocumento" ng-model="documento.tipoDocumento" class="form-control" 
                                 ng-options="tipoDocumento.nome for tipoDocumento in tiposDocumento track by tipoDocumento.id"
@@ -83,6 +76,9 @@
 		                <button class="btn btn-danger btn-block" ng-click="liberarSoldados(army)" ng-hide="!isSoldadoSelecionado(army)">Liberar Soldados</button>                        
                         <br>
                         -->
+                        <!--                          
+                        <span ng-if="documento.tipoDocumento.nome" class="sigil" ng-class="documento.tipoDocumento.nome | lowercase"></span>
+                        -->                        
                         <br>
                     </form>
                 </div>

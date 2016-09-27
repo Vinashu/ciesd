@@ -30,10 +30,38 @@ angular.module("ciesd").directive("uiAccordion", function(){
                 if (scope.isOpened == true){
                     scope.isOpened = false;
                 } else {
+                    scope.getTramites();                    
                     ctrl.closeAll();                    
                     scope.isOpened = true;
                 }
             };
-        }
+        },
+        controller: ['$scope','$element', '$http', '$attrs', '$transclude', function($scope, $element, $http, $attrs, $transclude) {
+            $scope.getTramites = function () {
+                $scope.messageType = "alert-info";
+                $scope.message = "Procurando tramitações...";
+                $scope.tramites = null;
+                $http.get("php/getTramites.php?id=" + $scope.id)
+                    .success(function(data, status, headers, config) {
+                        $scope.messageType = "alert-warning";                        
+                        $scope.message = "Nenhuma tramitação encontrada...";                        
+                        $scope.tramites = data;
+                        console.log(data, status);                        
+                    })
+                    .error(function(data, status, headers, config) {
+                        switch(status) {
+                            case 401: {
+                                $scope.message = "You must be authenticated!"
+                            break;
+                            }
+                            case 500: {
+                                $scope.message = "Something went wrong!";
+                            break;
+                            }
+                        }
+                    console.log(data, status);
+                    });
+                };           
+        }]
     };
 });
