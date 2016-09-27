@@ -38,15 +38,20 @@ angular.module("ciesd").directive("uiAccordion", function(){
         },
         controller: ['$scope','$element', '$http', '$attrs', '$transclude', function($scope, $element, $http, $attrs, $transclude) {
             $scope.getTramites = function () {
+                $scope.showBar = true;
                 $scope.messageType = "alert-info";
                 $scope.message = "Procurando tramitações...";
                 $scope.tramites = null;
                 $http.get("php/getTramites.php?id=" + $scope.id)
                     .success(function(data, status, headers, config) {
-                        $scope.messageType = "alert-warning";                        
-                        $scope.message = "Nenhuma tramitação encontrada...";                        
-                        $scope.tramites = data;
-                        console.log(data, status);                        
+                        $scope.showBar = false;                        
+                        if (data === null) {
+                            $scope.messageType = "alert-warning";                        
+                            $scope.message = "Nenhuma tramitação encontrada...";
+                        } else {
+                            $scope.tramites = data;
+                            console.log(data, status);
+                        }
                     })
                     .error(function(data, status, headers, config) {
                         switch(status) {

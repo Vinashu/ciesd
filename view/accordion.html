@@ -1,10 +1,17 @@
+<!--
 <div class="ui-accordion-title" ng-click="open()">
-    {{id}} - {{titulo}}<br />
+    {{id}} - {{titulo}}<br /><span class="badge">14</span>
     {{data}} - {{tipo}}
 </div>
-<div class="ui-accordion-content" ng-show="isOpened" > <!-- ng-transclude -->
-    <div ng-show="!tramites" class="alert {{messageType}}">{{message}}</div>    
-    <table class="table" ng-show="tramites">
+<div class="ui-accordion-content" ng-show="isOpened" >
+    <br />
+    <div ng-show="!tramites" class="alert {{messageType}}">{{message}}
+        <div class="progress" ng-show="showBar">     
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+        </div>
+        </div>        
+    </div>    
+    <table class="table" ng-if="tramites">
         <thead>
             <tr>
                 <th class='txt-cntrl'>ID</th>
@@ -22,4 +29,40 @@
             </tr>
         </tbody>
     </table>           
+</div>
+-->
+<div class="panel panel-info"  ng-click="open()">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+    {{id}} - <span class="badge">14</span>&nbsp;<strong>{{titulo}}</strong><br />
+    {{data}} - {{tipo}}        
+    </h3>
+  </div>
+  <div class="panel-body" ng-show="isOpened">
+    <br />
+    <div ng-show="!tramites" class="alert {{messageType}}">{{message}}
+        <div class="progress" ng-show="showBar">     
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+        </div>
+        </div>        
+    </div>    
+    <table class="table" ng-if="tramites">
+        <thead>
+            <tr>
+                <th class='txt-cntrl'>ID</th>
+                <th class='txt-cntrl'>Data</th>
+                <th class='txt-cntrl'>Origem</th>
+                <th class='txt-cntrl'>Destino</th>                            
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="tramite in tramites">
+                <td>{{tramite.id}}</td>
+                <td>{{tramite.dataTramite | date:"dd/MM/yyyy"}}</td> 
+                <td>{{tramite.origem}}</td>
+                <td>{{tramite.destino}}</td>             
+            </tr>
+        </tbody>
+    </table> 
+  </div>
 </div>
