@@ -6,8 +6,8 @@
     $tramite = new Tramite();
     $tramite->origem = $request->origem;
     $tramite->destino = $request->destino;
-    $tramite->documento = $request->documento->id;
+    $tramite->documento = intval($request->documento->id);
     $tramite->dataTramite = $request->dataTramite;     
-    $tramite->formartarDataPara();
+    //$tramite->formartarDataPara();
     $tramite->salvar();              
 ?>

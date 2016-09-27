@@ -8,6 +8,15 @@ class Tramite extends Banco {
     public $documento;    
     public $dataTramite;    
 
+    public function __construct(){
+        if($this->id != 0){
+            $this->formatarId();       
+        }              
+        if($this->dataTramite != 0){
+            $this->formatarDataDe();                        
+        }          
+    }
+
     public function localizar($id){
         $data = parent::localizar($id); 
         if(!is_null($data)){
@@ -24,6 +33,7 @@ class Tramite extends Banco {
     }
     
     public function salvar(){
+        $this->formatarDataPara();        
         $this->id = parent::salvar();
         $documento = new Documento();
         $documento->localizar($this->documento);
@@ -45,14 +55,18 @@ class Tramite extends Banco {
     
     public function getId(){
         return $this->id;
-    }      
-
+    }
+          
     public function formatarDataPara(){
         $this->dataTramite = date("Y-m-d", strtotime(str_replace('/','-', $this->dataTramite))); 
     } 
 
     public function formatarDataDe(){
         $this->dataTramite = date("d/m/Y", strtotime(str_replace('-','/', $this->dataTramite))); 
-    }     
+    } 
+
+    public function formatarId() {
+        $this->id = str_pad($this->id, 5, '0', STR_PAD_LEFT);    
+    }    
 }
 ?>

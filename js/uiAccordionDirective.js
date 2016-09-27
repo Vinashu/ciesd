@@ -75,7 +75,36 @@ angular.module("ciesd").directive("uiAccordion", function(){
             };        
             $scope.ativarTramites = function () {
                 $scope.tramitador.status = !$scope.tramitador.status;    
-            };                                     
+            };      
+            $scope.tramitar = function (tramite, id) {
+                tramite.documento = {'id':id};
+                console.log(tramite);
+                $scope.qtd++;
+                //$scope.tramites.push(angular.copy(tramite));                    
+                addTramite(tramite);                    
+                delete $scope.tramite;
+                $scope.tramiteForm.$setPristine();   
+                $scope.tramitador.status = false;    
+            };     
+            var addTramite = function (data) {
+                $http.post("php/postTramite.php", data)
+                    .success(function(data, status, headers, config) {
+                        console.log("Post success");
+                        $scope.getTramites();                                                            
+                    })
+                    .error(function(data, status, headers, config) {
+                        switch(status) {
+                            case 401: {
+                                $scope.message = "You must be authenticated!"
+                            break;
+                            }
+                            case 500: {
+                                $scope.message = "Something went wrong!";
+                            break;
+                            }
+                        }
+                    });
+                };                                            
         }]
     };
 });

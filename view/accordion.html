@@ -30,9 +30,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="tramite in tramites">
+            <tr ng-repeat="tramite in tramites | orderBy:'dataTramite' ">
                 <td>{{tramite.id}}</td>
-                <td>{{tramite.dataTramite | date:"dd/MM/yyyy"}}</td> 
+                <td>{{tramite.dataTramite}}</td> 
                 <td>{{tramite.origem}}</td>
                 <td>{{tramite.destino}}</td>             
             </tr>
@@ -72,8 +72,8 @@
                 A data deve estar no formato dd/mm/aaaa.
             </div>   
             <br />   
-            {{tramite}}                                          
-            <button class="btn btn-success btn-block" ng-click="tramitar(tramite)" ng-disabled="tramiteForm.$invalid">
+            {{tramite}} -- {{id}}                                         
+            <button class="btn btn-success btn-block" ng-click="tramitar(tramite, id)" ng-disabled="tramiteForm.$invalid">
                     <span class="glyphicon glyphicon-file"></span> Tramitar documento
             </button>
             <br>
