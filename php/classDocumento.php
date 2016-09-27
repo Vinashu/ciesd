@@ -51,6 +51,10 @@ class Documento extends Banco {
     }
 
     public function atualizar(){
+        $this->formatarDataPara();
+        if($this->tipoDocumento !=0){
+            $this->setTipoDocumento();            
+        }             
         parent::atualizar();
     }    
 
