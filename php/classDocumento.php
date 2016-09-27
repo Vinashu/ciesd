@@ -7,6 +7,7 @@ class Documento extends Banco {
     public $titulo;
     public $tipoDocumento;
     public $dataCadastro;
+    public $qtdTramites=0;
 
     public function __construct(){
         if($this->id != 0){

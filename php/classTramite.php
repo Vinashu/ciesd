@@ -1,5 +1,6 @@
 <?php
 include_once("classBanco.php");
+include_once("classDocumento.php");
 class Tramite extends Banco {
     public $id;
     public $origem;
@@ -24,7 +25,19 @@ class Tramite extends Banco {
     
     public function salvar(){
         $this->id = parent::salvar();
+        $documento = new Documento();
+        $documento->localizar($this->documento);
+        $documento->qtdTramites++;
+        $documento->atualizar();
     }
+
+    public function deletar(){
+        $documento = new Documento();
+        $documento->localizar($this->documento);
+        $documento->qtdTramites--;
+        $documento->atualizar();        
+        parent::deletar();
+    }    
 
     public function atualizar(){
         parent::atualizar();

@@ -1,6 +1,6 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
-include_once("classTramite.php");
+include_once("../classTramite.php");
 $tramite = new Tramite();
 $tramite->origem = "CPC";
 $tramite->destino = "Fundação Araucária";

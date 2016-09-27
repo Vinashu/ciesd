@@ -21,7 +21,8 @@ angular.module("ciesd").directive("uiAccordion", function(){
             id: "@",
             titulo: "@",
             data: "@",
-            tipo: "@"
+            tipo: "@",
+            qtd:"@"
         },
         require: "^uiAccordions",
         link: function(scope, element, attrs, ctrl){
