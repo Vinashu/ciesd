@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+.ui-accordion {
+	margin-bottom: 0px;
+}
+
 .ui-accordion-title {
 	border: 1px solid #CCCCCC;
 	cursor: pointer;
