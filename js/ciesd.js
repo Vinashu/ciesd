@@ -16,7 +16,7 @@ ciesd.controller("ciesdCtrl", function ($scope, $http) {
     };     
     $scope.ativarCadastro = function () {
         $scope.cadastrador.status = !$scope.cadastrador.status;    
-    };         
+    };   
     $scope.criterioDeOrdenacao = "id";
     $scope.direcaoDaOrdenacao = true;
     $scope.ordenarPor = function (campo) {

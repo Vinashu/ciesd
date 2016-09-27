@@ -67,7 +67,15 @@ angular.module("ciesd").directive("uiAccordion", function(){
                         }
                     console.log(data, status);
                     });
-                };           
+                };   
+            $scope.tramitador = {
+                status:  false,
+                inativo: "Ativar trâmite...",
+                ativo:   "Desativar trâmite..."
+            };        
+            $scope.ativarTramites = function () {
+                $scope.tramitador.status = !$scope.tramitador.status;    
+            };                                     
         }]
     };
 });
