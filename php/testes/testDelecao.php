@@ -1,7 +1,7 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
-include_once("classDocumento.php");
-include_once("classTramite.php");
+include_once("../classDocumento.php");
+include_once("../classTramite.php");
 $documento = new Documento();
 $documento->titulo = "Teste de deleção de documentos";
 $documento->tipoDocumento = 3;

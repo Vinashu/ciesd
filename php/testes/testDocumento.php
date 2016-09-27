@@ -1,6 +1,6 @@
 <?php
 header("Content-type: text/html; charset=utf-8");
-include_once("classDocumento.php");
+include_once("../classDocumento.php");
 $documento = new Documento();
 $documento->titulo = "Ofício nº 035/2016 - ASP/CPC";
 $documento->tipoDocumento = 3;
