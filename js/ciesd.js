@@ -4,11 +4,19 @@ ciesd.controller("ciesdCtrl", function ($scope, $http) {
         status:  false,
         inativo: "Ativar procura...",
         ativo:   "Desativar procura..."
-    }
+    };
+    $scope.cadastrador = {
+        status:  false,
+        inativo: "Ativar cadastro...",
+        ativo:   "Desativar cadastro..."
+    };    
     $scope.ativarProcura = function () {
         $scope.procurador.status = !$scope.procurador.status;    
         delete $scope.searchText;          
     };     
+    $scope.ativarCadastro = function () {
+        $scope.cadastrador.status = !$scope.cadastrador.status;    
+    };         
     $scope.criterioDeOrdenacao = "id";
     $scope.direcaoDaOrdenacao = true;
     $scope.ordenarPor = function (campo) {

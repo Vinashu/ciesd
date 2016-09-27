@@ -45,8 +45,13 @@
                         </ui-accordion>                       
                     </ui-accordions>   
                 </div>
+                <br />
                 <div>
-                    <form name="documentoForm" id="documentoForm">
+                    <button class="btn btn-primary btn-block" ng-click="ativarCadastro()">
+                        <span class="glyphicon glyphicon-file"></span> {{cadastrador.status ? cadastrador.ativo : cadastrador.inativo}}
+                    </button>          
+                    <form name="documentoForm" id="documentoForm" ng-show="cadastrador.status">
+                        <br />                                 
                         <label for='titulo'>Título/Assunto:</label>
                         <input type="text" ng-model="documento.titulo" class="form-control" ng-required="true" ng-minlength="5" name="titulo" 
                         placeholder="Por favor, digite o título do Documento!"/>
@@ -69,8 +74,9 @@
                         </div>
                         <div ng-show="documentoForm.dataCadastro.$error.minlength" class="alert alert-danger">
                             A data deve estar no formato dd/mm/aaaa.
-                        </div>                                                
-                        <button class="btn btn-primary btn-block" ng-click="cadastrar(documento)" ng-disabled="documentoForm.$invalid">
+                        </div>   
+                        <br />                                             
+                        <button class="btn btn-success btn-block" ng-click="cadastrar(documento)" ng-disabled="documentoForm.$invalid">
                                 <span class="glyphicon glyphicon-file"></span> Cadastrar documento
                         </button>
                         <!--
@@ -81,8 +87,8 @@
                         <span ng-if="documento.tipoDocumento.nome" class="sigil" ng-class="documento.tipoDocumento.nome | lowercase"></span>
                         -->                        
                         <br>
-                    </form>
-                </div>
+                    </form>                        
+                </div>   
                 <div>
                     <button class="btn btn-primary btn-block" ng-click="ativarProcura()">
                         <span class="glyphicon glyphicon-file"></span> {{procurador.status ? procurador.ativo : procurador.inativo}}
