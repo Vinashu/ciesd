@@ -42,38 +42,39 @@
         <button class="btn btn-primary btn-block" ng-click="ativarTramites()">
             <span class="glyphicon glyphicon-file"></span> {{tramitador.status ? tramitador.ativo : tramitador.inativo}}
         </button>          
-        <form name="documentoForm" id="documentoForm" ng-show="tramitador.status">
+        <form name="tramiteForm" id="tramiteForm" ng-show="tramitador.status">
             <br />                                 
-            <label for='titulo'>Título/Assunto:</label>
-            <input type="text" ng-model="documento.titulo" class="form-control" ng-required="true" ng-minlength="5" name="titulo" 
-            placeholder="Por favor, digite o título do Documento!"/>
-            <div ng-show="documentoForm.titulo.$error.required && documentoForm.titulo.$dirty" class="alert alert-danger">
-                Por favor, digite o título do Documento!
+            <label for='origem'>Origem:</label>
+            <input type="text" ng-model="tramite.origem" class="form-control" ng-required="true" ng-minlength="3" name="origem" 
+            placeholder="Por favor, digite a origem da Tramitação."/>
+            <div ng-show="tramiteForm.origem.$error.required && tramiteForm.origem.$dirty" class="alert alert-danger">
+                Por favor, digite a origem da Tramitação
             </div>
-            <div ng-show="documentoForm.titulo.$error.minlength" class="alert alert-danger">
-                Campo nome deve ter no mínimo 5 caracteres.
+            <div ng-show="tramiteForm.origem.$error.minlength" class="alert alert-danger">
+                Campo nome deve ter no mínimo 3 caracteres.
             </div>
-            <label for='titulo'>Título/Assunto:</label>
-            <input type="text" ng-model="documento.titulo" class="form-control" ng-required="true" ng-minlength="5" name="titulo" 
-            placeholder="Por favor, digite o título do Documento!"/>
-            <div ng-show="documentoForm.titulo.$error.required && documentoForm.titulo.$dirty" class="alert alert-danger">
-                Por favor, digite o título do Documento!
+            <label for='destino'>Destino:</label>
+            <input type="text" ng-model="tramite.destino" class="form-control" ng-required="true" ng-minlength="3" name="destino" 
+            placeholder="Por favor, digite o destino da Tramitação."/>
+            <div ng-show="tramiteForm.destino.$error.required && tramiteForm.destino.$dirty" class="alert alert-danger">
+                Por favor, digite o destino da Tramitação
             </div>
-            <div ng-show="documentoForm.titulo.$error.minlength" class="alert alert-danger">
-                Campo nome deve ter no mínimo 5 caracteres.
+            <div ng-show="tramiteForm.destino.$error.minlength" class="alert alert-danger">
+                Campo nome deve ter no mínimo 3 caracteres.
             </div>              
-            <label for='dataCadastro'>Data:</label>
-            <input type="text" ng-model="documento.dataCadastro" class="form-control" ng-required="true" ng-minlength="10" name="dataCadastro" 
+            <label for='dataTramite'>Data:</label>
+            <input type="text" ng-model="tramite.dataTramite" class="form-control" ng-required="true" ng-minlength="10" name="dataTramite" 
             placeholder="Digite a data..." ui-date />
-            <div ng-show="documentoForm.dataCadastro.$error.required && documentoForm.dataCadastro.$dirty" class="alert alert-danger">
+            <div ng-show="tramiteForm.dataTramite.$error.required && tramiteForm.dataTramite.$dirty" class="alert alert-danger">
                 Digite a data...
             </div>
-            <div ng-show="documentoForm.dataCadastro.$error.minlength" class="alert alert-danger">
+            <div ng-show="tramiteForm.dataTramite.$error.minlength" class="alert alert-danger">
                 A data deve estar no formato dd/mm/aaaa.
             </div>   
-            <br />                                             
-            <button class="btn btn-success btn-block" ng-click="cadastrar(documento)" ng-disabled="documentoForm.$invalid">
-                    <span class="glyphicon glyphicon-file"></span> Cadastrar documento
+            <br />   
+            {{tramite}}                                          
+            <button class="btn btn-success btn-block" ng-click="tramitar(tramite)" ng-disabled="tramiteForm.$invalid">
+                    <span class="glyphicon glyphicon-file"></span> Tramitar documento
             </button>
             <br>
         </form>                        
