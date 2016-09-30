@@ -59,9 +59,9 @@ class Documento extends Banco {
     }    
 
     public function deletar(){
-        parent::deletar();
         $tramite = new Tramite();
         $tramite->deletarPor("documento", $this->id);
+        parent::deletar();
     }        
     
     public function getId(){
