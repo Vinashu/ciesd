@@ -29,8 +29,10 @@ ciesd.controller("ciesdCtrl", function ($scope, $http) {
     var getDocumentos = function () {
         $http.get("php/getDocumentos.php")
             .success(function(data, status, headers, config) {
-                $scope.documentos = data;
-                console.log(data, status);                        
+                if (data != null){
+                    $scope.documentos = data;
+                }
+                console.log(data, status);                                        
             })
             .error(function(data, status, headers, config) {
                 switch(status) {
