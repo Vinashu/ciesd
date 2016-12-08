@@ -104,7 +104,29 @@ angular.module("ciesd").directive("uiAccordion", function(){
                             }
                         }
                     });
-                };                                            
+                };                                          
+            $scope.delDocumento = function (data) { 
+                if(confirm("Deseja realmente remover esse Documento?")){
+                    $http.post("php/delDocumento.php", data)
+                        .success(function(data, status, headers, config) {
+                            $element.remove();
+                            $scope.$destroy();
+                            console.log("Del success");                        
+                        })
+                        .error(function(data, status, headers, config) {
+                            switch(status) {
+                                case 401: {
+                                    $scope.message = "You must be authenticated!"
+                                break;
+                                }
+                                case 500: {
+                                    $scope.message = "Something went wrong!";
+                                break;
+                                }
+                            }
+                        });
+                    }
+                };                   
         }]
     };
 });

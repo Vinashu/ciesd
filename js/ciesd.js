@@ -95,7 +95,7 @@ ciesd.controller("ciesdCtrl", function ($scope, $http) {
                     }
                 }
             });
-        };    
+        };
     /*    
     var delSoldier = function (data) {
         $http.post("php/delSoldier.php", data)

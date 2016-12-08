@@ -1,14 +1,19 @@
 <div class="panel panel-info ui-accordion">
-  <div class="panel-heading" ng-click="open()">
+  <div class="panel-heading" >
     <h3 class="panel-title">
         <div class="media">
             <div class="media-left  media-middle">
                 <span class="badge">{{qtd}}</span>
             </div>
-            <div class="media-body">
+            <div class="media-body" ng-click="open()">
                 {{id}} - <strong>{{titulo}}</strong><br />
                 {{data}} - {{tipo}}        
             </div>
+            <div class="media-right  media-middle" >
+                <button class="btn btn-primary btn-block" ng-click="delDocumento({'id':id})">
+                    <i class="glyphicon glyphicon-trash "></i>
+                </button>                
+            </div>            
         </div>
     </h3>
   </div>
