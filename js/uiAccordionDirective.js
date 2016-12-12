@@ -126,7 +126,30 @@ angular.module("ciesd").directive("uiAccordion", function(){
                             }
                         });
                     }
-                };                   
+                };   
+            $scope.delTramite = function (data) { 
+                if(confirm("Deseja realmente remover esse Tramite?")){
+                    $http.post("php/delTramite.php", data)
+                        .success(function(data, status, headers, config) {
+                            $scope.getTramites();       
+                            console.log("Del success");
+                            console.log($scope);
+                            $scope.qtd--;                        
+                        })
+                        .error(function(data, status, headers, config) {
+                            switch(status) {
+                                case 401: {
+                                    $scope.message = "You must be authenticated!"
+                                break;
+                                }
+                                case 500: {
+                                    $scope.message = "Something went wrong!";
+                                break;
+                                }
+                            }
+                        });
+                    }
+                };                                    
         }]
     };
 });

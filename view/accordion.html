@@ -31,7 +31,8 @@
                 <th class='txt-cntrl'>ID</th>
                 <th class='txt-cntrl'>Data</th>
                 <th class='txt-cntrl'>Origem</th>
-                <th class='txt-cntrl'>Destino</th>                            
+                <th class='txt-cntrl'>Destino</th>
+                <th></th>                                            
             </tr>
         </thead>
         <tbody>
@@ -39,7 +40,12 @@
                 <td>{{tramite.id}}</td>
                 <td>{{tramite.dataTramite}}</td> 
                 <td>{{tramite.origem}}</td>
-                <td>{{tramite.destino}}</td>             
+                <td>{{tramite.destino}}</td> 
+                <td>
+                    <button class="btn btn-danger btn-block" ng-click="delTramite(tramite)">
+                        <i class="glyphicon glyphicon-trash "></i>
+                    </button>                      
+                </td>            
             </tr>
         </tbody>
     </table> 
