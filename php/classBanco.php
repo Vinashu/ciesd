@@ -90,6 +90,7 @@ class Banco {
         $db = $this->conectar();
         $res = mysqli_query($db,$sql);
         $this->desconectar($db);
+        $linhas = [];
         while($linha = mysqli_fetch_object($res,get_class($this)))        
         {
             $linhas[] = $linha;

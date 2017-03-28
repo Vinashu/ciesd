@@ -10,10 +10,15 @@
                 {{data}} - {{tipo}}        
             </div>
             <div class="media-right  media-middle" >
+                <button class="btn btn-warning btn-block" ng-click="editDocumento({'id':id})">
+                    <i class="glyphicon glyphicon-pencil "></i>
+                </button>   
+            </div> 
+            <div class="media-right  media-middle" >
                 <button class="btn btn-danger btn-block" ng-click="delDocumento({'id':id})">
                     <i class="glyphicon glyphicon-trash "></i>
-                </button>                
-            </div>            
+                </button>                               
+            </div>                        
         </div>
     </h3>
   </div>

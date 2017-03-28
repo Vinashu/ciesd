@@ -65,7 +65,7 @@ angular.module("ciesd").directive("uiAccordion", function(){
                             break;
                             }
                         }
-                    console.log(data, status);
+                    //console.log(data, status);
                     });
                 };   
             $scope.tramitador = {

@@ -31,9 +31,11 @@ class Documento extends Banco {
             if($this->id != 0){
                 $this->formatarId();
             }                        
-            if($this->tipoDocumento !=0){
-                $this->setTipoDocumento();            
-            }        
+            if(!is_object($this->tipoDocumento)){
+                if($this->tipoDocumento !=0){
+                    $this->setTipoDocumento();            
+                }   
+            }
         } else {
             $campos = get_object_vars($this);                        
             foreach($campos as $key => $value){
@@ -52,9 +54,11 @@ class Documento extends Banco {
 
     public function atualizar(){
         $this->formatarDataPara();
-        if($this->tipoDocumento !=0){
-            $this->setTipoDocumento();            
-        }             
+        if(!is_object($this->tipoDocumento)){
+            if($this->tipoDocumento !=0){
+                $this->setTipoDocumento();            
+            }   
+        }     
         parent::atualizar();
     }    
 
