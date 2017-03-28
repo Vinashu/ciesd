@@ -8,6 +8,7 @@ angular.module("ciesd").directive("uiAccordions", function(){
             this.closeAll = function(){
                 accordions.forEach(function(accordion){
                     accordion.isOpened = false;
+                    accordion.isEditing = false;
                 });
             }
         }
@@ -21,7 +22,8 @@ angular.module("ciesd").directive("uiAccordion", function(){
             id: "@",
             titulo: "@",
             data: "@",
-            tipo: "@",
+            tipo: "@",        
+            tipoid: "@",                 
             qtd:"@"
         },
         require: "^uiAccordions",
@@ -30,10 +32,12 @@ angular.module("ciesd").directive("uiAccordion", function(){
             scope.open = function(){
                 if (scope.isOpened == true){
                     scope.isOpened = false;
+                    scope.isEditing = false;                    
                 } else {
                     scope.getTramites();                    
                     ctrl.closeAll();                    
                     scope.isOpened = true;
+                    scope.isEditing = false;                                        
                 }
             };
         },
@@ -126,7 +130,70 @@ angular.module("ciesd").directive("uiAccordion", function(){
                             }
                         });
                     }
-                };   
+                };  
+            $scope.editDocumento = function (data) {   
+                if ($scope.isEditing){
+                    $scope.isEditing = false;
+                } else {
+                    $scope.documento = {};
+                    $scope.documento.id = $scope.id;
+                    $scope.documento.titulo = $scope.titulo;
+                    $scope.documento.dataCadastro = $scope.data;                
+                    $scope.documento.tipoDocumento = {} 
+                    $scope.documento.tipoDocumento.id = $scope.tipoid;
+                    $scope.documento.tipoDocumento.nome = $scope.tipo; 
+                    $scope.documento.qtdTramites = $scope.qtd;               
+                    $scope.isEditing = true;                    
+                }
+            };   
+            $scope.getTiposDocumento = function () {
+                $http.get("php/getTiposDocumento.php")
+                    .success(function(data, status, headers, config) {
+                        $scope.tiposDocumento = data;
+                        console.log(data, status);                        
+                    })
+                    .error(function(data, status, headers, config) {
+                        switch(status) {
+                            case 401: {
+                                $scope.message = "You must be authenticated!"
+                            break;
+                            }
+                            case 500: {
+                                $scope.message = "Something went wrong!";
+                            break;
+                            }
+                        }
+                    console.log(data, status);
+                    });
+                };                                 
+            $scope.getTiposDocumento();      
+            $scope.editarDocumento = function (data) {
+                $scope.tempData = {};                
+                $scope.tempData.titulo = data.titulo;
+                $scope.tempData.tipo = data.tipoDocumento.nome;
+                $scope.tempData.data = data.dataCadastro;
+                $http.post("php/putDocumento.php", data)
+                    .success(function(data, status, headers, config) {
+                        console.log("Put success");
+                        $scope.titulo = $scope.tempData.titulo;
+                        $scope.tipo = $scope.tempData.tipo;
+                        $scope.data = $scope.tempData.data;                        
+                        $scope.isEditing = false;                  
+                        delete $scope.tempData;     
+                    })
+                    .error(function(data, status, headers, config) {
+                        switch(status) {
+                            case 401: {
+                                $scope.message = "You must be authenticated!"
+                            break;
+                            }
+                            case 500: {
+                                $scope.message = "Something went wrong!";
+                            break;
+                            }
+                        }
+                    });
+                };                       
             $scope.delTramite = function (data) { 
                 if(confirm("Deseja realmente remover esse Tramite?")){
                     $http.post("php/delTramite.php", data)

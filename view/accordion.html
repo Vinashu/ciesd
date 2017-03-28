@@ -22,6 +22,42 @@
         </div>
     </h3>
   </div>
+
+    <div  class="panel-body" ng-show="isEditing">                             
+        <form name="documentoForm" id="documentoForm">
+            <br />                                 
+            <label for='titulo'>Título/Assunto:</label>
+            <input type="text" ng-model="documento.titulo" class="form-control" ng-required="true" ng-minlength="5" name="titulo" 
+            placeholder="Por favor, digite o título do Documento!"/>
+            <div ng-show="documentoForm.titulo.$error.required && documentoForm.titulo.$dirty" class="alert alert-danger">
+                Por favor, digite o título do Documento!
+            </div>
+            <div ng-show="documentoForm.titulo.$error.minlength" class="alert alert-danger">
+                Campo nome deve ter no mínimo 5 caracteres.
+            </div>  
+            <label for="tipoDocumento">Tipo de Documento:</label>
+            <select name="tipoDocumento" id="tipoDocumento" ng-model="documento.tipoDocumento" class="form-control" 
+                    ng-options="tipoDocumento.nome for tipoDocumento in tiposDocumento track by tipoDocumento.id"
+                    ng-model="data.selectedOption" ng-required="true" >
+            </select>
+            <label for='dataCadastro'>Data:</label>
+            <input type="text" ng-model="documento.dataCadastro" class="form-control" ng-required="true" ng-minlength="10" name="dataCadastro" 
+            placeholder="Digite a data..." ui-date />
+            <div ng-show="documentoForm.dataCadastro.$error.required && documentoForm.dataCadastro.$dirty" class="alert alert-danger">
+                Digite a data...
+            </div>
+            <div ng-show="documentoForm.dataCadastro.$error.minlength" class="alert alert-danger">
+                A data deve estar no formato dd/mm/aaaa.
+            </div>   
+            <br />                                             
+            <button class="btn btn-success btn-block" ng-click="editarDocumento(documento)" ng-disabled="documentoForm.$invalid">
+                    <span class="glyphicon glyphicon-file"></span> Salvar edição do documento
+            </button>
+            <br>
+        </form>     
+    </div>
+
+
   <div class="panel-body" ng-show="isOpened">
     <br />
     <div ng-show="!tramites" class="alert {{messageType}}">{{message}}

@@ -26,12 +26,20 @@ echo "<pre>";
 print_r($documento);
 echo "</pre>";
 $documento->deletar();
-$documento->localizar($documento->id);
+//$documento->localizar($documento->id);
 echo "<pre>";
 print_r($documento);
 echo "</pre>";
 $documentos = $documento->listar();
 echo "<pre>";
 print_r($documentos);
-echo "</pre>";
+echo "</pre> <hr />";
+
+$documento = new Documento();
+$documento->id =  29;
+$documento->titulo = "Ble ble";
+$documento->tipoDocumento = 4;
+$documento->dataCadastro = '30-11-2017';
+$documento->qtdTramites =  3;
+$documento->atualizar(); 
 ?>
