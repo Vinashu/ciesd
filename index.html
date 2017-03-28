@@ -19,34 +19,17 @@
         <div class='row-fluid'>
             <div class="hidden-xs hidden-sm col-md-3 col-lg-3"></div>            
             <div class="jumbotron col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div ng-if="documentos">
-                    <h3 class='txt-cntrl'>Controle Interno de Entrada e Saída de Documentos - CPC</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class='txt-cntrl'><a href="" ng-click="ordenarPor('id')">ID</a></th>
-                                <th class='txt-cntrl'><a href="" ng-click="ordenarPor('dataCadastro')">Data</a></th>
-                                <th class='txt-cntrl'><a href="" ng-click="ordenarPor('titulo')">Título/Assunto</a></th>
-                                <th class='txt-cntrl'><a href="" ng-click="ordenarPor('tipoDocumento.nome')">Tipo de Doumento</a></th>
-                                <th class='txt-cntrl'></th>                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                    <ui-accordions>
-                        <ui-accordion ng-repeat="documento in documentos | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao | filter:searchText | limitTo:20" 
-                            id="{{documento.id}}"
-                            titulo="{{documento.titulo}}"                         
-                            data="{{documento.dataCadastro | date:'dd/MM/yyyy'}}"
-                            tipo="{{documento.tipoDocumento.nome}}"
-                            tipoid="{{documento.tipoDocumento.id}}"                            
-                            qtd="{{documento.qtdTramites}}"
-                        >
-                        </ui-accordion>                       
-                    </ui-accordions>   
-                </div>
-                <br />
+                <div>
+                    <button class="btn btn-primary btn-block" ng-click="ativarProcura()">
+                        <span class="glyphicon glyphicon-file"></span> {{procurador.status ? procurador.ativo : procurador.inativo}}
+                    </button>
+                    <div ng-show="procurador.status">
+                        <br />
+                        <label>Procurar documento <span class="glyphicon glyphicon-search"></span>: 
+                            <input ng-model="searchText" placeholder="Digite aqui o argumento de busca..." size="38" >
+                        </label>
+                    </div>
+                </div>                  
                 <div>
                     <button class="btn btn-primary btn-block" ng-click="ativarCadastro()">
                         <span class="glyphicon glyphicon-file"></span> {{cadastrador.status ? cadastrador.ativo : cadastrador.inativo}}
@@ -89,18 +72,35 @@
                         -->                        
                         <br>
                     </form>                        
-                </div>   
-                <div>
-                    <button class="btn btn-primary btn-block" ng-click="ativarProcura()">
-                        <span class="glyphicon glyphicon-file"></span> {{procurador.status ? procurador.ativo : procurador.inativo}}
-                    </button>
-                    <div ng-show="procurador.status">
-                        <br />
-                        <label>Procurar documento <span class="glyphicon glyphicon-search"></span>: 
-                            <input ng-model="searchText" placeholder="Digite aqui o argumento de busca..." size="38" >
-                        </label>
-                    </div>
-                </div>                                        
+                </div>                                                         
+                <div ng-if="documentos">
+                    <h3 class='txt-cntrl'>Controle Interno de Entrada e Saída de Documentos - CPC</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class='txt-cntrl'><a href="" ng-click="ordenarPor('id')">ID</a></th>
+                                <th class='txt-cntrl'><a href="" ng-click="ordenarPor('dataCadastro')">Data</a></th>
+                                <th class='txt-cntrl'><a href="" ng-click="ordenarPor('titulo')">Título/Assunto</a></th>
+                                <th class='txt-cntrl'><a href="" ng-click="ordenarPor('tipoDocumento.nome')">Tipo de Doumento</a></th>
+                                <th class='txt-cntrl'></th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <ui-accordions>
+                        <ui-accordion ng-repeat="documento in documentos | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao | filter:searchText | limitTo:20" 
+                            id="{{documento.id}}"
+                            titulo="{{documento.titulo}}"                         
+                            data="{{documento.dataCadastro | date:'dd/MM/yyyy'}}"
+                            tipo="{{documento.tipoDocumento.nome}}"
+                            tipoid="{{documento.tipoDocumento.id}}"                            
+                            qtd="{{documento.qtdTramites}}"
+                        >
+                        </ui-accordion>                       
+                    </ui-accordions>   
+                </div>
+                <br />
             </div>
             <div class="hidden-xs hidden-sm col-md-3 col-lg-3"></div>
         </div>
