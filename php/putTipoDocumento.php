@@ -5,5 +5,5 @@
     $request = json_decode($postdata);   
     $tipoDocumento = new TipoDocumento();
     $tipoDocumento->nome = $request->nome;
-    $tipoDocumento->alterar();          
+    $tipoDocumento->atualizar();          
 ?>
