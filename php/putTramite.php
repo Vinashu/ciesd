@@ -9,5 +9,5 @@
     $tramite->documento = $request->documento->id;
     $tramite->dataTramite = $request->dataTramite;     
     $tramite->formartarDataPara();
-    $tramite->alterar();              
+    $tramite->atualizar();              
 ?>
